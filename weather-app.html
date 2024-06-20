@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Creating a weather paragrath-->
+    <p>
+        The weather in London is:
+    </p>
+    <div id="weatherTableContainer"></div>
+    <!--Adding Javascript API call-->
+    <script>
+        // Creating an async function to fetch the API for OPen meteo in a try catch block
+        async function openMeteo() {
+            try {
+                let response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=51.5085&longitude=-0.1257&hourly=temperature_2m&timezone=Europe%2FLondon");
+                let result = await response.json();
+
+                // Accessing current temperature
+                let currentTemperature = result.hourly.temperature_2m[0];
+
+                // Displaying current temperature
+                document.getElementById("weatherTableContainer").innerText = currentTemperature + "°C";
+
+            } catch (error) {
+                console.error("There was an error fetching the weather", error);
+            }
+        }
+
+        // Calling the Open Meteo function only when the DOM content is fully loaded, inside the DOM event listener
+        document.addEventListener("DOMContentLoaded", function() {
+            openMeteo();
+        });
+    </script>
+</body>
+</html>

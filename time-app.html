@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        The time in London is:
+    </p>
+    <div id="timeContainer"></div>
+    <script>
+        // Function to create a time in a table format, using local time string 
+        function display() {
+            let currentDate = new Date();
+            let formattedCurrentTime = currentDate.toLocaleTimeString('en-UK', {hour12: false});
+            
+            // Attaching the output to the ID to display below the <p> in the pody
+            document.getElementById("timeContainer").innerHTML = formattedCurrentTime;
+        }
+        
+        // Calling the display function to set the time
+        display();
+
+        // Set interval to update the time every second
+        setInterval(display, 1000);
+    </script>
+</body>
+</html>

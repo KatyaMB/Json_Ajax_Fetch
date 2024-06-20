@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch Example</title>
+  </head>
+  <body>
+    <script>
+
+//Creating an empty object
+
+let items = []; 
+
+// Fetching API data, parsing as json and catching the error
+fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699")
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(result) {
+        items = result.items;
+        console.table(items);
+    })
+    .then(undefined, function(error) {
+        console.log(error);
+    });
+
+// Asynch function fetching API with a try catch block to catch errors
+async function fetchGoogleAPI() {
+    try {
+        let response = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699");
+        let result = await response.json();
+        items = result.items;
+        console.log(items);
+    } catch (error) {
+        console.log("There was an error fetching the info", error);
+    }
+}
+
+fetchGoogleAPI();
+
+// Creating an async function to fetch API data from the link and wrapping in a try catch block
+async function fetchGoogleAPI() {
+    try {
+        let response = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:0747532699");
+        let result = await response.json();
+
+        // Capturing the title and description of the books API
+        let title = result.items[0].volumeInfo.title;
+        let description = result.items[0].volumeInfo.description;
+
+        // Returning the title and description
+        console.log("Title:", title);
+        console.log("Description:", description);
+    } catch (error) {
+      console.log("There was an error fetching the info", error);
+    }
+}
+
+fetchGoogleAPI();
+   
+   </script>
+  </body>
+</html>
+
