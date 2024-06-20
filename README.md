@@ -27,3 +27,6 @@ Using fetch, creating an app that fetches the current weather for London from an
 
 
 Credit: Katya Mironova
+
+
+![alt text](https://github.com/KatyaMB/Json_Ajax_Fetch/blob/main/Budgeting_01.png) ![alt text](https://github.com/KatyaMB/Json_Ajax_Fetch/blob/main/Budgeting_02.png)
